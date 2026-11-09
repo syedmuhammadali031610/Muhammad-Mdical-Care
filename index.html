@@ -1,30 +1,461 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Muhammad Medical Care</title><link rel="stylesheet" href="assets/style.css"></head>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Muhammad Medical Care | Premium Healthcare</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+ --green:#164e43;
+ --dark:#0c3029;
+ --gold:#c49a58;
+ --cream:#f6f8f4;
+ --text:#20332e;
+ --muted:#7b8982;
+ --white:#fff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{font-family:'DM Sans',sans-serif;color:var(--text);overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+.container{width:min(1160px,90%);margin:auto}
+section{scroll-margin-top:80px}
+
+/* NAVBAR */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;background:#ffffffed;backdrop-filter:blur(14px);border-bottom:1px solid #e9eee9}
+.navbar{height:78px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font:800 18px Manrope;color:var(--green)}
+.logo-icon{background:var(--green);color:white;padding:9px 12px;border-radius:10px;font-size:22px}
+.logo small{display:block;font-size:9px;letter-spacing:2px;color:var(--gold)}
+.nav-links{display:flex;align-items:center;gap:27px}
+.nav-links a{font-size:13px;font-weight:700;color:#52635b;transition:.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-links .nav-cta{background:var(--green);color:white;padding:13px 18px;border-radius:5px}
+.nav-links .nav-cta:hover{background:var(--dark)}
+.menu-btn{display:none;border:0;background:none;font-size:27px;color:var(--green);cursor:pointer}
+
+/* GENERAL */
+.eyebrow{font-size:11px;letter-spacing:2px;color:var(--gold);font-weight:800}
+h1,h2,h3{font-family:Manrope}
+h2{font-size:clamp(32px,4vw,46px);line-height:1.2;color:var(--dark);margin:15px 0}
+h2 em,h1 em{font-style:normal;color:var(--gold)}
+.muted{color:var(--muted);font-size:14px;line-height:1.9}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 22px;border-radius:5px;font-size:13px;font-weight:700;transition:.3s;cursor:pointer;border:0}
+.btn-primary{background:var(--green);color:white}
+.btn-primary:hover{background:var(--dark);transform:translateY(-4px);box-shadow:0 12px 25px #164e4330}
+.btn-outline{border:1px solid #cbd7ce;color:var(--green)}
+.btn-outline:hover{background:white;transform:translateY(-3px)}
+.btn-light{background:white;color:var(--green)}
+.btn-light:hover{transform:translateY(-4px);box-shadow:0 10px 25px #0002}
+.section{padding:100px 0}
+.soft{background:var(--cream)}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:40px}
+.text-link{font-size:13px;font-weight:800;color:var(--green)}
+.text-link:hover{color:var(--gold)}
+
+/* HERO */
+.hero{background:var(--cream);padding:145px 0 90px;min-height:690px;display:flex;align-items:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:65px}
+.hero h1{font-size:clamp(46px,5.5vw,70px);line-height:1.1;letter-spacing:-3px;color:var(--dark);margin:22px 0}
+.hero-content>p{max-width:490px;font-size:14px;line-height:1.9;color:var(--muted)}
+.hero-actions{display:flex;gap:13px;flex-wrap:wrap;margin-top:27px}
+.trust{display:flex;align-items:center;gap:13px;margin-top:35px}
+.trust-icon{font-size:26px;color:var(--green)}
+.trust b,.trust small{display:block}
+.trust b{font-size:13px}
+.trust small{font-size:11px;color:var(--muted);margin-top:4px}
+.hero-image{position:relative}
+.hero-image img{width:100%;height:455px;object-fit:cover;border-radius:180px 180px 8px 8px;box-shadow:0 25px 60px #17392f20}
+.floating-card{position:absolute;bottom:35px;left:-25px;background:white;padding:17px 20px;border-radius:8px;box-shadow:0 15px 40px #0002;display:flex;gap:12px;align-items:center}
+.floating-card span{font-size:25px;color:#c76b68}
+.floating-card b,.floating-card small{display:block}
+.floating-card b{font-size:12px;color:var(--green)}
+.floating-card small{font-size:10px;color:var(--muted);margin-top:4px}
+
+/* STATS */
+.stats{background:var(--green);padding:35px 0;color:white}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);text-align:center}
+.stats-grid div{border-right:1px solid #ffffff35}
+.stats-grid div:last-child{border:0}
+.stats strong,.stats span{display:block}
+.stats strong{font:800 32px Manrope;color:#e8c58e}
+.stats span{font-size:11px;color:#d6e0d9;margin-top:5px}
+
+/* ABOUT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:75px;align-items:center}
+.about-image{position:relative}
+.about-image img{width:100%;height:440px;object-fit:cover;border-radius:8px}
+.image-label{position:absolute;bottom:20px;left:20px;background:white;padding:17px 22px;color:var(--green);font-weight:800;font-size:12px;box-shadow:0 10px 30px #0002}
+.checks{list-style:none;margin:25px 0;display:grid;gap:17px}
+.checks li{font-size:13px;font-weight:600}
+.checks li::first-letter{color:var(--green)}
+
+/* SERVICES */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.service-card{background:white;padding:28px;border:1px solid #e8eee9;border-radius:8px;position:relative;transition:.35s;overflow:hidden}
+.service-card::after{content:"";position:absolute;bottom:0;left:0;width:0;height:3px;background:var(--gold);transition:.35s}
+.service-card:hover{transform:translateY(-9px);box-shadow:0 20px 40px #17392f12}
+.service-card:hover::after{width:100%}
+.service-icon{width:50px;height:50px;display:grid;place-items:center;border-radius:12px;background:#eaf2ed;color:var(--green);font-size:25px}
+.service-card .number{position:absolute;right:25px;top:30px;color:#d9e1da;font:700 22px Manrope}
+.service-card h3{font-size:18px;color:var(--dark);margin:20px 0 10px}
+.service-card p{font-size:12px;color:var(--muted);line-height:1.8}
+.service-card a{display:inline-block;margin-top:18px;font-size:12px;font-weight:800;color:var(--green)}
+
+/* DOCTORS */
+.doctor-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.doctor-card{border:1px solid #e8eee9;border-radius:8px;overflow:hidden;transition:.35s;background:white}
+.doctor-card:hover{transform:translateY(-8px);box-shadow:0 18px 40px #0001}
+.doctor-card img{width:100%;height:285px;object-fit:cover;object-position:top}
+.doctor-info{padding:22px}
+.doctor-info span{font-size:9px;letter-spacing:1.5px;color:var(--gold);font-weight:800}
+.doctor-info h3{font-size:18px;color:var(--dark);margin:9px 0 5px}
+.doctor-info p{font-size:12px;color:var(--muted)}
+.doctor-info a{display:inline-block;margin-top:15px;color:var(--green);font-size:12px;font-weight:800}
+
+/* PAGE HEADERS */
+.page-banner{background:var(--cream);padding:145px 0 65px;text-align:center}
+.page-banner h1{font-size:clamp(38px,5vw,58px);color:var(--dark);margin:15px 0}
+.page-banner p{font-size:14px;color:var(--muted)}
+.breadcrumb{font-size:12px;color:var(--muted);margin-top:20px}
+.breadcrumb a{color:var(--green)}
+
+/* APPOINTMENT */
+.appointment{background:var(--dark);padding:90px 0;color:white}
+.appointment-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center}
+.appointment h2{color:white}
+.appointment-copy p{color:#bdcec4;font-size:13px;line-height:1.9;margin-top:15px}
+.contact-info{margin-top:28px;color:#e6c58d;font-size:13px}
+.appointment-form{background:white;padding:30px;border-radius:9px;color:var(--text)}
+.appointment-form h3{font-size:23px;color:var(--dark)}
+.appointment-form>p{font-size:12px;color:var(--muted);margin:8px 0 18px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.appointment-form label{display:block;font-size:11px;font-weight:700;color:#52635b;margin:12px 0}
+.appointment-form input,.appointment-form select,.appointment-form textarea{width:100%;display:block;margin-top:7px;padding:12px;border:1px solid #e0e8e1;border-radius:5px;background:#fbfcfa;outline:none;font-size:12px}
+.appointment-form input:focus,.appointment-form select:focus,.appointment-form textarea:focus{border-color:var(--green)}
+.appointment-form button{width:100%;justify-content:center;margin-top:10px}
+.form-message{font-size:12px;color:var(--green);margin-top:12px;min-height:18px}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px}
+.contact-box{background:var(--cream);padding:30px;border-radius:8px;margin-bottom:15px}
+.contact-box span{font-size:23px;color:var(--green)}
+.contact-box h3{font-size:15px;color:var(--dark);margin:10px 0}
+.contact-box p{font-size:12px;color:var(--muted)}
+.contact-panel{background:var(--green);padding:35px;border-radius:8px;color:white}
+.contact-panel h3{font-size:23px;margin-bottom:12px}
+.contact-panel p{font-size:13px;line-height:1.9;color:#d0ddd5}
+.contact-panel a{display:inline-block;margin-top:25px;background:white;color:var(--green);padding:14px 20px;border-radius:5px;font-size:12px;font-weight:800}
+
+/* CTA + FOOTER */
+.cta{background:var(--green);padding:65px 0;color:white}
+.cta-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.cta h2{color:white;font-size:38px}
+.footer{background:#0b2d26;color:white;padding-top:55px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:45px}
+.footer p{font-size:12px;color:#aebfb5;margin-top:15px}
+.footer h4{font-size:13px;color:#e6c58d;margin-bottom:17px}
+.footer-grid>div>a:not(.logo){display:block;font-size:12px;color:#bdcbc3;margin:12px 0}
+.footer-grid>div>a:hover{color:white}
+.footer-logo{color:white}
+.copyright{border-top:1px solid #ffffff20;text-align:center;padding:18px;color:#aebfb5;font-size:11px}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.hero-image{animation:floatIn 1.2s ease both}
+@keyframes floatIn{from{opacity:0;transform:translateX(35px)}to{opacity:1;transform:translateX(0)}}
+@keyframes gentleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.floating-card{animation:gentleFloat 4s ease-in-out infinite}
+.btn:active{transform:scale(.97)}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+ .nav-links{gap:13px}.nav-links a{font-size:11px}
+ .hero-grid,.split,.appointment-grid{gap:30px}
+ .hero h1{font-size:50px}
+}
+@media(max-width:680px){
+ .navbar{height:70px}
+ .menu-btn{display:block}
+ .nav-links{display:none;position:absolute;top:70px;left:0;width:100%;padding:20px 5%;background:white;box-shadow:0 15px 25px #0001;flex-direction:column;align-items:stretch;gap:0}
+ .nav-links.open{display:flex}
+ .nav-links a{padding:13px;font-size:13px}
+ .nav-links .nav-cta{text-align:center;margin-top:8px}
+ .hero{padding:120px 0 65px}
+ .hero-grid,.split,.appointment-grid,.contact-grid{grid-template-columns:1fr}
+ .hero h1{font-size:46px}
+ .hero-image img{height:350px}
+ .floating-card{left:0}
+ .stats-grid{grid-template-columns:1fr 1fr;gap:22px 0}
+ .stats-grid div:nth-child(2){border:0}
+ .section{padding:70px 0}
+ .section-heading{display:block}
+ .section-heading>.text-link{display:inline-block;margin-top:15px}
+ .cards,.doctor-grid{grid-template-columns:1fr}
+ .doctor-card img{height:300px}
+ .form-row{grid-template-columns:1fr;gap:0}
+ .cta-inner{flex-direction:column;align-items:flex-start}
+ .cta h2{font-size:32px}
+ .footer-grid{grid-template-columns:1fr 1fr;gap:25px}
+ .footer-grid>div:first-child{grid-column:1/-1}
+}
+@media(max-width:420px){
+ .footer-grid{grid-template-columns:1fr}
+ .footer-grid>div:first-child{grid-column:auto}
+ .hero h1{font-size:40px}
+ .appointment-form{padding:22px 17px}
+}
+</style>
+</head>
+
 <body>
-<header><nav class="container nav"><a class="brand" href="#home"><b>✚</b><span>Muhammad<small>MEDICAL CARE</small></span></a>
-<button id="menuBtn" aria-label="Menu">☰</button><div class="links" id="links">
-<a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#doctors">Doctors</a><a href="#contact">Contact</a><a class="navbtn" href="#appointment">Book Appointment ↗</a></div></nav></header>
+
+<header>
+<nav class="navbar container">
+<a href="#home" class="logo"><span class="logo-icon">✚</span><span>Muhammad<small>MEDICAL CARE</small></span></a>
+<button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">☰</button>
+<div class="nav-links" id="navLinks">
+<a href="#home" class="active">Home</a>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#doctors">Doctors</a>
+<a href="#contact">Contact</a>
+<a href="#appointment" class="nav-cta">Book Appointment ↗</a>
+</div>
+</nav>
+</header>
+
+<!-- HOME -->
 <main>
-<section class="hero" id="home"><div class="container heroGrid"><div><label class="eyebrow">● YOUR HEALTH, OUR PRIORITY</label><h1>Care that makes<br>you feel <em>better.</em></h1><p>Modern healthcare with compassionate professionals, personalized attention, and services designed around your wellbeing.</p><div class="actions"><a class="btn" href="#appointment">Book an Appointment ↗</a><a class="btn outline" href="#services">Explore Services</a></div><div class="trust">✚ <span><b>Care you can trust</b><small>Professional, patient-focused healthcare</small></span></div></div>
-<div class="heroPic"><img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1100&q=85" alt="Healthcare professionals"><div class="float">♥ Compassionate care<br><small>Here for your health</small></div></div></div></section>
-<section class="stats"><div class="container statGrid"><div><b>10+</b><small>Years of Experience</small></div><div><b>15+</b><small>Medical Specialists</small></div><div><b>5k+</b><small>Happy Patients</small></div><div><b>24/7</b><small>Patient Support</small></div></div></section>
-<section class="section" id="about"><div class="container twoCol"><img class="aboutPic" src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=85" alt="Doctor"><div><label class="eyebrow">ABOUT OUR CLINIC</label><h2>Healthcare with a <em>human touch.</em></h2><p class="muted">We believe quality healthcare begins with listening. Our goal is to make every patient feel comfortable, respected, and cared for.</p><ul class="checks"><li>✓ <span><b>Personalized attention</b><small>Care that considers your individual needs.</small></span></li><li>✓ <span><b>Experienced professionals</b><small>A team focused on your health and wellbeing.</small></span></li><li>✓ <span><b>Modern approach</b><small>Thoughtful care supported by modern practices.</small></span></li></ul><a class="textlink" href="#contact">Get to know us →</a></div></div></section>
-<section class="section pale" id="services"><div class="container"><div class="sectionHead"><div><label class="eyebrow">WHAT WE OFFER</label><h2>Care for every <em>stage of life.</em></h2></div><p class="muted">Healthcare services designed to support your health and wellbeing.</p></div><div class="cards">
-<article><i>✚</i><small>01</small><h3>General Checkup</h3><p>Routine health assessments and personalized medical guidance.</p><a href="#appointment">Book a visit →</a></article>
-<article><i>♡</i><small>02</small><h3>Heart Care</h3><p>Heart health consultations and preventive care support.</p><a href="#appointment">Book a visit →</a></article>
-<article><i>✿</i><small>03</small><h3>Dental Care</h3><p>Dental consultations and care for healthier smiles.</p><a href="#appointment">Book a visit →</a></article>
-<article><i>⌕</i><small>04</small><h3>Diagnostics</h3><p>Diagnostic services to support informed healthcare decisions.</p><a href="#appointment">Book a visit →</a></article>
-<article><i>♧</i><small>05</small><h3>Family Medicine</h3><p>Ongoing healthcare guidance for individuals and families.</p><a href="#appointment">Book a visit →</a></article>
-<article><i>☼</i><small>06</small><h3>Wellness Care</h3><p>Preventive guidance to help build healthier habits.</p><a href="#appointment">Book a visit →</a></article></div></div></section>
-<section class="section" id="doctors"><div class="container"><div class="sectionHead"><div><label class="eyebrow">MEET OUR TEAM</label><h2>People who care <em>for you.</em></h2></div><p class="muted">Sample specialist profiles. Replace with your actual medical team.</p></div><div class="doctors">
-<article><img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=600&q=80" alt="Sample doctor"><h3>Dr. Ayesha Khan</h3><p>Family Physician</p><a href="#appointment">Book appointment →</a></article>
-<article><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=600&q=80" alt="Sample doctor"><h3>Dr. Hamza Ahmed</h3><p>Cardiology Consultant</p><a href="#appointment">Book appointment →</a></article>
-<article><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=600&q=80" alt="Sample doctor"><h3>Dr. Sara Malik</h3><p>Dental Surgeon</p><a href="#appointment">Book appointment →</a></article></div></div></section>
-<section class="appointment" id="appointment"><div class="container appointGrid"><div><label class="eyebrow">TAKE THE FIRST STEP</label><h2>Your health deserves<br><em>time and attention.</em></h2><p>Send an appointment request and our team can get back to you.</p><p class="contactLine">☎ &nbsp; +92 300 0000000</p><p class="contactLine">✉ &nbsp; hello@example.com</p></div>
-<form id="appointmentForm"><h3>Request an appointment</h3><p>Fill in your details below.</p><label>Full Name<input id="name" required placeholder="Your full name"></label><div class="formRow"><label>Email Address<input type="email" required placeholder="Your email"></label><label>Phone Number<input type="tel" required placeholder="+92..."></label></div><div class="formRow"><label>Department<select required><option value="">Choose service</option><option>General Checkup</option><option>Heart Care</option><option>Dental Care</option><option>Diagnostics</option><option>Family Medicine</option></select></label><label>Preferred Date<input id="date" type="date" required></label></div><label>Message (Optional)<textarea rows="3" placeholder="How can we help?"></textarea></label><button class="btn" type="submit">Send Request ↗</button><p id="formMessage" class="message"></p><small class="note">Demo form only: requests are not sent or stored.</small></form></div></section>
-<section class="section" id="contact"><div class="container contact"><div><label class="eyebrow">WE'RE HERE TO HELP</label><h2>Have a question? <em>Let's talk.</em></h2><p class="muted">Reach out to learn more about our services and appointment process.</p></div><a class="btn" href="mailto:hello@example.com">Email Our Team ↗</a></div></section>
+<section class="hero" id="home">
+<div class="container hero-grid">
+<div class="hero-content reveal">
+<span class="eyebrow">✦ YOUR HEALTH, OUR PRIORITY</span>
+<h1>Exceptional care.<br><em>Better living.</em></h1>
+<p>Modern healthcare meets compassionate service. Discover personalized medical care designed around you and your family's wellbeing.</p>
+<div class="hero-actions">
+<a class="btn btn-primary" href="#appointment">Book Appointment ↗</a>
+<a class="btn btn-outline" href="#services">Explore Services</a>
+</div>
+<div class="trust"><span class="trust-icon">✚</span><div><b>Healthcare you can trust</b><small>Professional care with a human touch</small></div></div>
+</div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1100&q=85" alt="Healthcare professional">
+<div class="floating-card"><span>♥</span><div><b>Care comes first</b><small>Here for your wellbeing</small></div></div>
+</div>
+</div>
+</section>
+
+<section class="stats">
+<div class="container stats-grid">
+<div><strong>10+</strong><span>Years of Experience</span></div>
+<div><strong>15+</strong><span>Medical Specialists</span></div>
+<div><strong>5K+</strong><span>Happy Patients</span></div>
+<div><strong>24/7</strong><span>Patient Support</span></div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+<div class="container split">
+<div class="about-image reveal">
+<img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=900&q=85" alt="Doctor">
+<div class="image-label">PATIENT FIRST — ALWAYS</div>
+</div>
+<div class="reveal">
+<span class="eyebrow">ABOUT OUR CLINIC</span>
+<h2>Healthcare with a <em>human touch.</em></h2>
+<p class="muted">We believe great healthcare starts with listening. Our goal is to create a welcoming experience where every patient feels respected, informed, and cared for.</p>
+<ul class="checks">
+<li>✓ &nbsp; Personalized patient attention</li>
+<li>✓ &nbsp; Experienced medical professionals</li>
+<li>✓ &nbsp; Modern healthcare approach</li>
+<li>✓ &nbsp; A welcoming patient experience</li>
+</ul>
+<a href="#contact" class="text-link">Get to know us →</a>
+</div>
+</div>
+</section>
+
+<!-- SERVICES -->
+<section class="section soft" id="services">
+<div class="container">
+<div class="section-heading reveal">
+<div><span class="eyebrow">WHAT WE OFFER</span><h2>Our Medical <em>Services.</em></h2></div>
+<p class="muted">Explore our sample healthcare service categories. Confirm availability with your actual clinic before publishing.</p>
+</div>
+<div class="cards">
+<article class="service-card reveal"><div class="service-icon">✚</div><span class="number">01</span><h3>General Checkup</h3><p>Routine health assessments and general medical consultations.</p><a href="#appointment">Book a visit →</a></article>
+<article class="service-card reveal"><div class="service-icon">♡</div><span class="number">02</span><h3>Heart Care</h3><p>Heart health consultations and preventive care guidance.</p><a href="#appointment">Book a visit →</a></article>
+<article class="service-card reveal"><div class="service-icon">✿</div><span class="number">03</span><h3>Dental Care</h3><p>Dental consultations and oral health support.</p><a href="#appointment">Book a visit →</a></article>
+<article class="service-card reveal"><div class="service-icon">⌕</div><span class="number">04</span><h3>Diagnostics</h3><p>Diagnostic support to help inform healthcare decisions.</p><a href="#appointment">Book a visit →</a></article>
+<article class="service-card reveal"><div class="service-icon">♧</div><span class="number">05</span><h3>Family Medicine</h3><p>General healthcare guidance for individuals and families.</p><a href="#appointment">Book a visit →</a></article>
+<article class="service-card reveal"><div class="service-icon">☼</div><span class="number">06</span><h3>Wellness Care</h3><p>Preventive health guidance and healthy lifestyle support.</p><a href="#appointment">Book a visit →</a></article>
+</div>
+</div>
+</section>
+
+<!-- DOCTORS -->
+<section class="section" id="doctors">
+<div class="container">
+<div class="section-heading reveal">
+<div><span class="eyebrow">MEET OUR TEAM</span><h2>People who care <em>for you.</em></h2></div>
+<p class="muted">These are sample profiles for design demonstration. Replace them with verified doctor details.</p>
+</div>
+<div class="doctor-grid">
+<article class="doctor-card reveal">
+<img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=85" alt="Sample doctor">
+<div class="doctor-info"><span>GENERAL MEDICINE</span><h3>Dr. Ayesha Khan</h3><p>Family Physician</p><a href="#appointment">Book appointment →</a></div>
+</article>
+<article class="doctor-card reveal">
+<img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&w=700&q=85" alt="Sample doctor">
+<div class="doctor-info"><span>CARDIOLOGY</span><h3>Dr. Hamza Ahmed</h3><p>Cardiology Consultant</p><a href="#appointment">Book appointment →</a></div>
+</article>
+<article class="doctor-card reveal">
+<img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=85" alt="Sample doctor">
+<div class="doctor-info"><span>DENTISTRY</span><h3>Dr. Sara Malik</h3><p>Dental Surgeon</p><a href="#appointment">Book appointment →</a></div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- APPOINTMENT -->
+<section class="appointment" id="appointment">
+<div class="container appointment-grid">
+<div class="appointment-copy reveal">
+<span class="eyebrow">TAKE THE FIRST STEP</span>
+<h2>Your health deserves<br><em>time and attention.</em></h2>
+<p>Send an appointment request through this demo form. Your clinic can connect it to a real booking system later.</p>
+<div class="contact-info">☎ &nbsp; +92 300 0000000<br><br>✉ &nbsp; hello@example.com</div>
+</div>
+<form class="appointment-form reveal" id="appointmentForm">
+<h3>Request an Appointment</h3>
+<p>Enter your details below.</p>
+<label>Full Name<input type="text" id="fullName" placeholder="Your full name" required></label>
+<div class="form-row">
+<label>Email Address<input type="email" placeholder="Your email address" required></label>
+<label>Phone Number<input type="tel" placeholder="+92..." required></label>
+</div>
+<div class="form-row">
+<label>Department<select required><option value="">Select service</option><option>General Checkup</option><option>Heart Care</option><option>Dental Care</option><option>Diagnostics</option><option>Family Medicine</option><option>Wellness Care</option></select></label>
+<label>Preferred Date<input type="date" id="appointmentDate" required></label>
+</div>
+<label>Your Message<textarea rows="3" placeholder="Write your message..."></textarea></label>
+<button type="submit" class="btn btn-primary">Submit Request ↗</button>
+<p class="form-message" id="formMessage"></p>
+<small style="color:#89958e;font-size:10px">Demo only: this form does not send or save personal information.</small>
+</form>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+<div class="container">
+<div class="section-heading reveal">
+<div><span class="eyebrow">GET IN TOUCH</span><h2>Let's start a <em>conversation.</em></h2></div>
+<p class="muted">Have questions about our services? Reach out using the details below.</p>
+</div>
+<div class="contact-grid">
+<div class="reveal">
+<div class="contact-box"><span>☎</span><h3>Phone Number</h3><p>+92 300 0000000</p></div>
+<div class="contact-box"><span>✉</span><h3>Email Address</h3><p>hello@example.com</p></div>
+<div class="contact-box"><span>⌖</span><h3>Our Location</h3><p>Karachi, Pakistan — replace with your clinic address.</p></div>
+</div>
+<div class="contact-panel reveal">
+<h3>We're here to help.</h3>
+<p>For appointment questions, service information, or general enquiries, contact our team by email or phone.</p>
+<a href="mailto:hello@example.com">Email Our Team ↗</a>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+<div class="container cta-inner reveal">
+<div><span class="eyebrow">YOUR WELLBEING MATTERS</span><h2>Make your health<br><em>a priority.</em></h2></div>
+<a href="#appointment" class="btn btn-light">Book Your Visit ↗</a>
+</div>
+</section>
+
 </main>
-<footer><div class="container foot"><div><a class="brand" href="#home"><b>✚</b><span>Muhammad<small>MEDICAL CARE</small></span></a><p>Thoughtful healthcare, centered around you.</p></div><div><h4>Quick Links</h4><a href="#about">About Us</a><a href="#services">Services</a><a href="#doctors">Our Doctors</a></div><div><h4>Contact</h4><a href="mailto:hello@example.com">hello@example.com</a><a href="tel:+923000000000">+92 300 0000000</a><a href="#contact">Karachi, Pakistan</a></div></div><div class="copyright">© 2026 Muhammad Medical Care. All rights reserved.</div></footer>
-<script src="assets/script.js"></script></body></html>
+
+<footer class="footer">
+<div class="container footer-grid">
+<div><a href="#home" class="logo footer-logo"><span class="logo-icon">✚</span><span>Muhammad<small>MEDICAL CARE</small></span></a><p>Thoughtful healthcare, centered around you.</p></div>
+<div><h4>Quick Links</h4><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a><a href="#doctors">Our Doctors</a></div>
+<div><h4>Contact</h4><a href="mailto:hello@example.com">hello@example.com</a><a href="tel:+923000000000">+92 300 0000000</a><a href="#contact">Karachi, Pakistan</a></div>
+</div>
+<div class="copyright">© 2026 Muhammad Medical Care. All rights reserved.</div>
+</footer>
+
+<script>
+// MOBILE NAVIGATION
+const menuBtn=document.getElementById("menuBtn");
+const navLinks=document.getElementById("navLinks");
+
+menuBtn.addEventListener("click",()=>{
+ navLinks.classList.toggle("open");
+ menuBtn.textContent=navLinks.classList.contains("open")?"✕":"☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(link=>{
+ link.addEventListener("click",()=>{
+  navLinks.classList.remove("open");
+  menuBtn.textContent="☰";
+ });
+});
+
+// SCROLL REVEAL ANIMATION
+const observer=new IntersectionObserver((entries)=>{
+ entries.forEach(entry=>{
+  if(entry.isIntersecting){
+   entry.target.classList.add("visible");
+   observer.unobserve(entry.target);
+  }
+ });
+},{threshold:0.12});
+
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+// ACTIVE NAV LINK
+const sections=document.querySelectorAll("main section[id]");
+const navItems=document.querySelectorAll(".nav-links a:not(.nav-cta)");
+
+window.addEventListener("scroll",()=>{
+ let current="home";
+ sections.forEach(section=>{
+  if(window.scrollY>=section.offsetTop-160){
+   current=section.id;
+  }
+ });
+ navItems.forEach(link=>{
+  link.classList.toggle("active",link.getAttribute("href")==="#"+current);
+ });
+});
+
+// APPOINTMENT DATE MINIMUM
+const dateInput=document.getElementById("appointmentDate");
+const today=new Date();
+dateInput.min=new Date(today.getTime()-today.getTimezoneOffset()*60000).toISOString().slice(0,10);
+
+// DEMO APPOINTMENT FORM
+document.getElementById("appointmentForm").addEventListener("submit",function(e){
+ e.preventDefault();
+ if(!this.reportValidity())return;
+ const name=document.getElementById("fullName").value.trim();
+ document.getElementById("formMessage").textContent=
+ "Thank you, "+name+"! Demo request received on this page. It has not been sent to the clinic.";
+ this.reset();
+ dateInput.min=new Date().toISOString().slice(0,10);
+});
+</script>
+</body>
+</html>
